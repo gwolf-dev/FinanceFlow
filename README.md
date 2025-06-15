@@ -1,6 +1,6 @@
 # 🚧 Aplicação em desenvolvimento... 🚧
 
-## Sobre a simulação de auenticação com json-server:
+## Sobre a simulação de autenticação com json-server:
 
 O token é contituído por [id, name, email, password]
 
