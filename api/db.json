@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Joaquim Soares",
+      "email": "joaq@dominio.com",
+      "password": "testPass",
+      "img": null,
+      "cpf": null,
+      "city": null,
+      "country": null,
+      "phone": null,
+      "birthDate": null,
+      "language": "pt-BR",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvYXF1aW0gU29hcmVzIiwiZW1haWwiOiJqb2FxQGRvbWluaW8uY29tIiwicGFzc3dvcmQiOiJ0ZXN0UGFzcyJ9.gEa7cxFJENX7AwugaLVmCA87y5WHSXqW4bI8uBc7Fvo"
+    }
+  ],
+  "bank": [
+    {
+      "userId": 1,
+      "currentBalance": 2500,
+      "timestampStatus": "2025-06-14T12:34:56.789Z"
+    }
+  ],
+  "transactions": [
+    {
+      "userId": 1,
+      "type": "Credit",
+      "description": "Venda de uma Air Fryer",
+      "value": 399.64,
+      "category": "Appliances",
+      "timestamp": "2025-02-02T12:34:56.789Z"
+    },
+    {
+      "userId": 1,
+      "type": "Debit",
+      "description": "Compras supermercado",
+      "value": 153.82,
+      "category": "Food",
+      "timestamp": "2025-05-23T12:34:56.789Z"
+    }
+  ]
+}
