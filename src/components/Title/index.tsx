@@ -13,28 +13,28 @@ const Title = ({ type, customStyle, children }: TitleProps) => {
     case "h1":
       return (
         <h1
-          className={`text-4xl text-gray-950 font-bold ${customStyleRef.current}`}>
+          className={`text-4xl text-gray-950 font-bold max-md:text-3xl ${customStyleRef.current}`}>
           {children}
         </h1>
       );
     case "h2":
       return (
         <h2
-          className={`text-3xl text-gray-950 font-bold ${customStyleRef.current}`}>
+          className={`text-3xl text-gray-950 font-bold max-md:text-2xl ${customStyleRef.current}`}>
           {children}
         </h2>
       );
     case "h3":
       return (
         <h3
-          className={`text-2xl text-gray-900 font-semibold ${customStyleRef.current}`}>
+          className={`text-2xl text-gray-900 font-semibold max-md:text-xl ${customStyleRef.current}`}>
           {children}
         </h3>
       );
     case "h4":
       return (
         <h4
-          className={`text-xl text-gray-900 font-semibold ${customStyleRef.current}`}>
+          className={`text-xl text-gray-900 font-semibold max-md:text-lg ${customStyleRef.current}`}>
           {children}
         </h4>
       );

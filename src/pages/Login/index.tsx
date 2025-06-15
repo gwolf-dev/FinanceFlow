@@ -1,28 +1,39 @@
 import { Navigate } from "react-router";
 
+import translationFile from "./translation";
 import { useAuth } from "../../hooks";
 import { Input, Title } from "../../components";
 
 function Login() {
   const { isAuthenticated } = useAuth();
+  const { language } = navigator;
+  const userLanguage =
+    language === "pt-BR" || language === "en-US" ? language : "pt-BR";
+  const translation = translationFile[userLanguage];
 
   if (isAuthenticated === true) return <Navigate to="/" />;
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center gap-8 bg-emerald-50">
-      {/**
-       * titulo
-       * formulario
-       * footer do login
-       */}
       <Title type="h1" customStyle={"text-green-950"}>
-        Tela de login
+        {translation.title}
       </Title>
-      <form>
-        <Input />
+      <form className="w-full max-w-md flex flex-col gap-4 px-3">
+        <Input
+          id="email"
+          label={translation.emailLabel}
+          placeholder={translation.emailPlaceholder}
+          type="email"
+        />
+        <Input
+          id="password"
+          label={translation.passwordLabel}
+          placeholder={translation.passwordPlaceholder}
+          type="password"
+        />
       </form>
 
-      <footer className="text-green-800 font-normal font-base">
-        © Todos os direitos reservados
+      <footer className="text-green-800 font-normal text-base max-md:text-sm">
+        {translation.footer}
       </footer>
     </div>
   );
