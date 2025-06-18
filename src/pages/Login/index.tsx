@@ -2,7 +2,7 @@ import { Navigate } from "react-router";
 
 import translationFile from "./translation";
 import { useAuth } from "../../hooks";
-import { Input, Title } from "../../components";
+import { Button, Input, Title } from "../../components";
 
 function Login() {
   const { isAuthenticated } = useAuth();
@@ -30,6 +30,8 @@ function Login() {
           placeholder={translation.passwordPlaceholder}
           type="password"
         />
+
+        <Button>{translation.button}</Button>
       </form>
 
       <footer className="text-green-800 font-normal text-base max-md:text-sm">

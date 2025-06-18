@@ -1,5 +1,6 @@
+import Button from "./Button";
 import Input from "./Input";
 import ProtectedRoute from "./ProtectedRoute";
 import Title from "./Title";
 
-export { Input, ProtectedRoute, Title };
+export { Button, Input, ProtectedRoute, Title };

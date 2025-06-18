@@ -1,3 +1,5 @@
+import React from "react";
+
 type Input = React.ComponentProps<"input"> & {
   id: string;
   label?: string | null;
