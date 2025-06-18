@@ -2,22 +2,35 @@ import { Navigate } from "react-router";
 
 import translationFile from "./translation";
 import { useAuth } from "../../hooks";
-import { Button, Input, Title } from "../../components";
+import { Button, Input, MessageStatus, Title } from "../../components";
 
 function Login() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login, errorMessage } = useAuth();
   const { language } = navigator;
   const userLanguage =
     language === "pt-BR" || language === "en-US" ? language : "pt-BR";
   const translation = translationFile[userLanguage];
 
+  const singnIn = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const email = String(formData.get("email"));
+    const password = String(formData.get("password"));
+
+    login(email, password);
+  };
+
   if (isAuthenticated === true) return <Navigate to="/" />;
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center gap-8 bg-emerald-50">
+    <div className="w-screen h-screen flex flex-col justify-center items-center gap-8 bg-emerald-50 relative">
+      <MessageStatus message={errorMessage} type="error" />
       <Title type="h1" customStyle={"text-green-950"}>
         {translation.title}
       </Title>
-      <form className="w-full max-w-md flex flex-col gap-4 px-3">
+      <form
+        onSubmit={singnIn}
+        className="w-full max-w-md flex flex-col gap-4 px-3">
         <Input
           id="email"
           label={translation.emailLabel}

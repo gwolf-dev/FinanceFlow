@@ -12,7 +12,7 @@ type Auth = {
   login: (username: string, password: string) => Promise<void>;
 };
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = import.meta.env.VITE_URL_API;
 const ERROR_MESSAGE = "Invalid Token!";
 const ERROR_MESSAGE_LOGIN = "Error logging in. Incorrect username or password!";
 
@@ -44,25 +44,25 @@ export const AuthProvider = ({ children }: React.PropsWithChildren) => {
     window.localStorage.removeItem("token");
   }, []);
 
-  async function login(username: string, password: string) {
+  async function login(email: string, password: string) {
     try {
       setError(null);
       const response = await fetch(
-        `${BASE_URL}/users?name=${username}&password=${password}`
+        `${BASE_URL}/users?email=${email}&password=${password}`
       );
       const result: UserApi[] = await response.json();
 
       if (result.length === 0) {
         console.error(ERROR_MESSAGE_LOGIN);
         setError(ERROR_MESSAGE_LOGIN);
-        logout();
+        return;
       }
 
       window.localStorage.setItem("token", result[0].token);
       setData(userObj(result[0]));
       setIsAuthenticated(true);
 
-      navigate("/conta");
+      navigate("/");
     } catch (error) {
       console.error(error);
       logout();
