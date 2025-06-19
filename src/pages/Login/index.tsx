@@ -1,15 +1,22 @@
+import { useState } from "react";
 import { Navigate } from "react-router";
 
 import translationFile from "./translation";
 import { useAuth } from "../../hooks";
-import { Button, Input, MessageStatus, Title } from "../../components";
+import { Button, Input, MessageStatus, Select, Title } from "../../components";
+
+type Language = "pt-BR" | "en-US";
 
 function Login() {
   const { isAuthenticated, login, errorMessage } = useAuth();
-  const { language } = navigator;
-  const userLanguage =
-    language === "pt-BR" || language === "en-US" ? language : "pt-BR";
-  const translation = translationFile[userLanguage];
+  const [language, setLanguage] = useState<Language>("pt-BR");
+  const translation = translationFile[language];
+
+  const handleLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+
+    setLanguage(value as Language);
+  };
 
   const singnIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,14 +25,14 @@ function Login() {
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
 
-    login(email, password);
+    login(email, password, language);
   };
 
   if (isAuthenticated === true) return <Navigate to="/" />;
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center gap-8 bg-emerald-50 relative">
+    <div className="w-screen h-screen flex flex-col justify-center items-center gap-8 bg-white relative">
       <MessageStatus message={errorMessage} type="error" />
-      <Title type="h1" customStyle={"text-green-950"}>
+      <Title type="h1" customStyle={"text-gray-950"}>
         {translation.title}
       </Title>
       <form
@@ -44,10 +51,23 @@ function Login() {
           type="password"
         />
 
-        <Button>{translation.button}</Button>
+        <div className="flex justify-between items-center">
+          <Button>{translation.button}</Button>
+
+          <Select
+            onChange={handleLanguage}
+            id="languageSelect"
+            name="languageSelect"
+            language={language}
+            options={[
+              { value: "pt-BR", text: "pt-BR" },
+              { value: "en-US", text: "en-US" },
+            ]}
+          />
+        </div>
       </form>
 
-      <footer className="text-green-800 font-normal text-base max-md:text-sm">
+      <footer className="text-gray-800 font-normal text-base max-md:text-sm">
         {translation.footer}
       </footer>
     </div>

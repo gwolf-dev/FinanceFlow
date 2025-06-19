@@ -1,5 +1,3 @@
-import Language from "./LanguageEnum";
-
 type UserApi = {
   id: number;
   name: string;
@@ -11,7 +9,7 @@ type UserApi = {
   country: string | null;
   phone: string | null;
   birthDate: string | null;
-  language: Language.PORTUGUESE_BR | Language.ENGLISH_US;
+  language: "pt-BR" | "en-US";
   token: string;
 };
 
@@ -25,7 +23,7 @@ type User = {
   country: string | null;
   phone: string | null;
   birthDate: string | null;
-  language: Language.PORTUGUESE_BR | Language.ENGLISH_US;
+  language: "pt-BR" | "en-US";
 };
 
 export { UserApi, User };

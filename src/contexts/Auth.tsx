@@ -9,12 +9,24 @@ type Auth = {
   userData: User | null;
   errorMessage: string | null;
   logout: () => void;
-  login: (username: string, password: string) => Promise<void>;
+  login: (
+    username: string,
+    password: string,
+    language: "pt-BR" | "en-US"
+  ) => Promise<void>;
 };
 
 const BASE_URL = import.meta.env.VITE_URL_API;
-const ERROR_MESSAGE = "Invalid Token!";
-const ERROR_MESSAGE_LOGIN = "Error logging in. Incorrect username or password!";
+const messages = {
+  "pt-BR": {
+    errorMessage: "Token inválido!",
+    errorMessageLogin: "Erro ao logar. E-mail ou senha incorretos!",
+  },
+  "en-US": {
+    errorMessage: "Invalid Token!",
+    errorMessageLogin: "Error logging in. Incorrect e-mail or password!",
+  },
+};
 
 export const AuthContext = createContext<Auth | null>(null);
 
@@ -44,17 +56,21 @@ export const AuthProvider = ({ children }: React.PropsWithChildren) => {
     window.localStorage.removeItem("token");
   }, []);
 
-  async function login(email: string, password: string) {
+  async function login(
+    email: string,
+    password: string,
+    language: "pt-BR" | "en-US"
+  ) {
     try {
       setError(null);
       const response = await fetch(
-        `${BASE_URL}/users?email=${email}&password=${password}`
+        `${BASE_URL}/users?email=${email || null}&password=${password || null}`
       );
       const result: UserApi[] = await response.json();
 
       if (result.length === 0) {
-        console.error(ERROR_MESSAGE_LOGIN);
-        setError(ERROR_MESSAGE_LOGIN);
+        console.error(messages[language].errorMessageLogin);
+        setError(messages[language].errorMessageLogin);
         return;
       }
 
@@ -80,8 +96,8 @@ export const AuthProvider = ({ children }: React.PropsWithChildren) => {
           const result: UserApi[] = await response.json();
 
           if (result.length === 0) {
-            console.error(ERROR_MESSAGE);
-            setError(ERROR_MESSAGE);
+            console.error(messages["pt-BR"].errorMessage);
+            setError(messages["pt-BR"].errorMessage);
             logout();
             return;
           }
