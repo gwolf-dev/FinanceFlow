@@ -1,4 +1,4 @@
-name: CI - Lint, Test and Build React App
+name: Running lint and tests tests workflow
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  project-ci:
+  run-lint-tests:
     runs-on: ubuntu-latest
 
     steps:
