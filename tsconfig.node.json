@@ -19,7 +19,10 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Test */
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["vite.config.ts"]
 }

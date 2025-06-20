@@ -18,9 +18,12 @@ function Login() {
     setLanguage(value as Language);
   };
 
-  const singnIn = (event: React.FormEvent<HTMLFormElement>) => {
+  const singnIn = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget.form;
+    if (!form) return;
+
+    const formData = new FormData(form);
 
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
@@ -35,9 +38,7 @@ function Login() {
       <Title type="h1" customStyle={"text-gray-950"}>
         {translation.title}
       </Title>
-      <form
-        onSubmit={singnIn}
-        className="w-full max-w-md flex flex-col gap-4 px-3">
+      <form className="w-full max-w-md flex flex-col gap-4 px-3">
         <Input
           id="email"
           label={translation.emailLabel}
@@ -52,7 +53,9 @@ function Login() {
         />
 
         <div className="flex justify-between items-center">
-          <Button>{translation.button}</Button>
+          <Button type="submit" handleClick={singnIn}>
+            {translation.button}
+          </Button>
 
           <Select
             onChange={handleLanguage}
