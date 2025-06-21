@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Navigate } from "react-router";
 
 import { useAuth } from "../../hooks";
@@ -9,4 +10,4 @@ function Register() {
   return <div>Register</div>;
 }
 
-export default Register;
+export default memo(Register);

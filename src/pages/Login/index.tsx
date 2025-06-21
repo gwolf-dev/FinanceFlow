@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Navigate } from "react-router";
 
 import translationFile from "./translation";
@@ -77,4 +77,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default memo(Login);
