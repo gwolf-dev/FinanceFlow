@@ -15,6 +15,7 @@ vi.mock("../../hooks", async () => {
 });
 
 import { useAuth } from "../../hooks";
+const mockedUseAuth = useAuth as ReturnType<typeof vi.fn>;
 
 describe("Select component", () => {
   const options = [
@@ -59,7 +60,7 @@ describe("Select component", () => {
   });
 
   it("uses fallback language when userData is null", () => {
-    (useAuth as jest.Mock).mockReturnValueOnce({ userData: null });
+    mockedUseAuth.mockReturnValueOnce({ userData: null });
 
     render(<Select options={options} language="en-US" />);
 
