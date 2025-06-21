@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 
-import { AuthProvider } from "./contexts/Auth";
+import { AuthProvider } from "./contexts";
 import { Loading, ProtectedRoute } from "./components";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";

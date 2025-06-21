@@ -2,7 +2,7 @@
 import { createContext, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { UserApi, User } from "../types";
+import { UserApi, User } from "../../types";
 
 type Auth = {
   isAuthenticated: boolean;
@@ -50,7 +50,6 @@ export const AuthProvider = ({ children }: React.PropsWithChildren) => {
   });
 
   const logout = useCallback(() => {
-    setError(null);
     setData(null);
     setIsAuthenticated(false);
     window.localStorage.removeItem("token");
