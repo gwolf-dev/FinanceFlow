@@ -9,7 +9,7 @@ describe("Button component", () => {
     const btn = screen.getByRole("button");
 
     expect(btn).toBeInTheDocument();
-    expect(btn).toHaveTextContent("Click here");
+    expect(btn).toHaveTextContent(/click here/i);
   });
 
   it("has correct CSS classes", () => {
@@ -32,7 +32,7 @@ describe("Button component", () => {
 
   it("calls onClick handler when clicked", () => {
     const onClick = vi.fn();
-    render(<Button handleClick={onClick}>{"Click here"}</Button>);
+    render(<Button handleClick={onClick}>Click here</Button>);
 
     fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalledTimes(1);

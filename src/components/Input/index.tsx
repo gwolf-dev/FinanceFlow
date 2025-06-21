@@ -15,7 +15,13 @@ const Input = ({ id, label, ...restProps }: Input) => {
           {label}
         </label>
       )}
-      <input id={id} name={id} className={style.input} {...restProps} />
+      <input
+        id={id}
+        name={id}
+        data-testid={id}
+        className={style.input}
+        {...restProps}
+      />
     </fieldset>
   );
 };

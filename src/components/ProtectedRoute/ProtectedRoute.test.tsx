@@ -29,7 +29,7 @@ describe("ProtectedRoute", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("Private Content")).toBeInTheDocument();
+    expect(screen.getByText(/private content/i)).toBeInTheDocument();
   });
 
   it("redirects to public page when user is not authenticated", () => {
@@ -44,7 +44,7 @@ describe("ProtectedRoute", () => {
       </MemoryRouter>
     );
 
-    expect(screen.queryByText("Private Content")).not.toBeInTheDocument();
-    expect(screen.queryByText("Public Content")).toBeInTheDocument();
+    expect(screen.queryByText(/private content/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/public content/i)).toBeInTheDocument();
   });
 });

@@ -22,33 +22,33 @@ describe("MessageStatus component", () => {
 
   it("renders message with correct text", () => {
     render(<MessageStatus type="success" message="Operation successful" />);
-    expect(screen.getByText("Operation successful")).toBeInTheDocument();
+    expect(screen.getByText(/operation successful/i)).toBeInTheDocument();
   });
 
   it("applies correct style for success message", () => {
     render(<MessageStatus type="success" message="Success!" />);
-    const element = screen.getByText("Success!");
+    const element = screen.getByText(/success!/i);
 
     expect(element).toHaveClass("bg-green-500", "text-green-950");
   });
 
   it("applies correct style for error message", () => {
     render(<MessageStatus type="error" message="Something went wrong" />);
-    const element = screen.getByText("Something went wrong");
+    const element = screen.getByText(/something went wrong/i);
 
     expect(element).toHaveClass("bg-red-500", "text-red-950");
   });
 
   it("applies correct style for warning message", () => {
     render(<MessageStatus type="warning" message="Be careful" />);
-    const element = screen.getByText("Be careful");
+    const element = screen.getByText(/be careful/i);
 
     expect(element).toHaveClass("bg-yellow-500", "text-yellow-950");
   });
 
   it("is visible when message is shown and hides after 3 seconds", () => {
     render(<MessageStatus type="success" message="Auto hide test" />);
-    const element = screen.getByText("Auto hide test");
+    const element = screen.getByText(/auto hide test/i);
 
     expect(element).toHaveClass("opacity-100", "visible");
 

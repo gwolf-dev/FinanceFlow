@@ -23,12 +23,16 @@ function Login() {
     const form = event.currentTarget.form;
     if (!form) return;
 
-    const formData = new FormData(form);
+    if (form.checkValidity()) {
+      const formData = new FormData(form);
 
-    const email = String(formData.get("email"));
-    const password = String(formData.get("password"));
+      const email = String(formData.get("email"));
+      const password = String(formData.get("password"));
 
-    login(email, password, language);
+      login(email, password, language);
+    } else {
+      form.reportValidity();
+    }
   };
 
   if (isAuthenticated === true) return <Navigate to="/" />;
@@ -44,12 +48,14 @@ function Login() {
           label={translation.emailLabel}
           placeholder={translation.emailPlaceholder}
           type="email"
+          required
         />
         <Input
           id="password"
           label={translation.passwordLabel}
           placeholder={translation.passwordPlaceholder}
           type="password"
+          required
         />
 
         <div className="flex justify-between items-center">

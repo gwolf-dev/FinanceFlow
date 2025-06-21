@@ -13,7 +13,7 @@ describe("Input component", () => {
 
   it("renders the label when provided", () => {
     render(<Input id="name" label="Full Name" />);
-    const input = screen.getByLabelText("Full Name");
+    const input = screen.getByLabelText(/full name/i);
 
     expect(input).toBeInTheDocument();
   });
@@ -29,7 +29,7 @@ describe("Input component", () => {
     render(
       <Input id="password" type="password" placeholder="Enter your password" />
     );
-    const input = screen.getByPlaceholderText("Enter your password");
+    const input = screen.getByPlaceholderText(/enter your password/i);
 
     expect(input).toHaveAttribute("type", "password");
   });
@@ -54,7 +54,7 @@ describe("Input component", () => {
   it("has the correct default CSS classes", () => {
     render(<Input id="styled" label={"E-mail"} />);
     const input = screen.getByRole("textbox");
-    const label = screen.getByText("E-mail");
+    const label = screen.getByText(/e-mail/i);
 
     expect(input).toHaveClass(style.input);
     expect(label).toHaveClass(style.label);

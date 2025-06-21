@@ -32,14 +32,14 @@ describe("Select component", () => {
 
   it("renders the translated default option (from user language)", () => {
     render(<Select options={options} />);
-    expect(screen.getByText("Selecione uma opção")).toBeInTheDocument();
+    expect(screen.getByText(/selecione uma opção/i)).toBeInTheDocument();
   });
 
   it("renders all passed options", () => {
     render(<Select options={options} />);
 
-    expect(screen.getByText("Option One")).toBeInTheDocument();
-    expect(screen.getByText("Option Two")).toBeInTheDocument();
+    expect(screen.getByText(/option one/i)).toBeInTheDocument();
+    expect(screen.getByText(/option two/i)).toBeInTheDocument();
   });
 
   it("sets a value and accepts user selection", () => {
@@ -56,7 +56,7 @@ describe("Select component", () => {
     expect(select.value).toBe("1");
     fireEvent.change(select, { target: { value: "2" } });
     expect(select.value).toBe("2");
-    expect(screen.getByText("Option Two")).toBeInTheDocument();
+    expect(screen.getByText(/option two/i)).toBeInTheDocument();
   });
 
   it("uses fallback language when userData is null", () => {
@@ -64,6 +64,6 @@ describe("Select component", () => {
 
     render(<Select options={options} language="en-US" />);
 
-    expect(screen.getByText("Select a option")).toBeInTheDocument();
+    expect(screen.getByText(/select a option/i)).toBeInTheDocument();
   });
 });
