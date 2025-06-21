@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
+import style from "./style";
+
 type MessageStatusProps = {
   type: "error" | "success" | "warning";
   message: string | null;
@@ -32,7 +34,8 @@ const MessageStatus = ({ type, message }: MessageStatusProps) => {
 
   return (
     <div
-      className={`w-fit px-4 py-2 fixed top-4 right-4 rounded-sm z-50 transition ease-in-out 300ms ${styleTypeRef.current} ${hiddenMessage}`}>
+      data-testid="messageStatus"
+      className={`${style.messageStatus} ${styleTypeRef.current} ${hiddenMessage}`}>
       {message}
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 
+import style from "./style";
 import translationFile from "./translation";
 import { useAuth } from "../../hooks";
 
@@ -16,9 +17,7 @@ const Select = ({ options, language, ...rest }: SelectProps) => {
     translationFile[userData?.language || language || "pt-BR"];
 
   return (
-    <select
-      className="w-35 h-10 border-2 border-gray-600 rounded-sm outline-0 text-gray-500 bg-white cursor-pointer"
-      {...rest}>
+    <select className={style.select} {...rest}>
       <option disabled>{translation.defaultOption}</option>
       {options.map((option, index) => (
         <option key={index} value={option.value}>
